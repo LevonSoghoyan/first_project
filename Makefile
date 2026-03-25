@@ -1,3 +1,3 @@
 all: 
-	gcc main.c done.c clear.c add.c list.c todo.h  -o todo
+	gcc main.c func.c todo.h  -o todo
 
