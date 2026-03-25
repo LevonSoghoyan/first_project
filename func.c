@@ -2,7 +2,7 @@
 #include "todo.h"
 #include <string.h>
 #include <stdlib.h>
-#define FILE_NAME "taks.txt"
+#define FILE_NAME "task.txt"
 
 void add(char *desc) {
 
@@ -17,7 +17,7 @@ void add(char *desc) {
 
 		}
 	}
-
+	printf("point 1");
 	fclose(read);
 	
 	
@@ -27,7 +27,7 @@ void add(char *desc) {
 		
 		printf("file cant opend");
 	}
-
+	printf("Point 2");
 	fprintf(fp,"%s|%d|%d \n",desc,id,PENDING);
 	fclose(fp);
 } 
@@ -51,9 +51,14 @@ void done(int task_id) {
 
 	FILE* fr=fopen(FILE_NAME,"r");
 	FILE* fw=fopen(FILE_NAME,"w");
-	while(fscanf(fr,"%d %s %d",&temp.id,temp.description,(int*)&temp.is_complete)==3) {
 	
-		temp.is_complete=DONE;
+	while(fscanf(fr,"%d %s %d",&temp.id,temp.description,(int*)&temp.is_complete)==3) {
+		
+		if(temp.id==task_id) {	
+		
+			temp.is_complete=DONE;
+		}
+
 		fprintf(fw,"%d|%s|%d",temp.id,temp.description,temp.is_complete);
 	}
 

@@ -2,26 +2,27 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-typedef struct {
-int id;
-char description[256];
-int in_complate;
-} Task;
-int main(int argc,char* argv[]){
 
-	if(strcmp(argv[1],"add")==0 && argc==3){
+int main(int argc,char* argv[]) {
+
+	if(strcmp(argv[1],"add")==0 && argc>=3){
+		printf("add is calld\n");
 		add(argv[2]);
 	}
-	else if(strcmp(argv[1],"done")==0 && argc==3){
+	else if(strcmp(argv[1],"done")==0 && argc>=3){
+		printf("done is calld\n");
 		done(atoi(argv[2]));
 	}
-	else if(argc==2 && strcmp(argv[1],"list")){
+	else if(strcmp(argv[1],"list")==0){
+		printf("list is calld\n");
 		list();
+
 	}
-	else if(argc==2 && strcmp(argv[1],"clear")){
+	else if( strcmp(argv[1],"clear")==0){
+		printf("clear is calld\n");
 		clear();
 	}
 	else{
-		printf("Invalid command");
+		printf("Invalid command\n");
 	}
 }
