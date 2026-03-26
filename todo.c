@@ -9,7 +9,7 @@ void add(char *desc)
 
 	int id=0;
 	char line[256];
-	FILE* read = fopen("task.txt","r");
+	FILE* read = fopen(FILE_NAME,"r");
 
 	if (read) {
 	
@@ -18,9 +18,7 @@ void add(char *desc)
 
 		}
 	}
-	printf("point 1");
 	fclose(read);
-	
 	
 	FILE* fp = fopen(FILE_NAME,"a");
 	
@@ -28,8 +26,7 @@ void add(char *desc)
 		
 		printf("file cant opend");
 	}
-	printf("Point 2");
-	fprintf(fp,"%s %d %d \n",desc,id,0);
+	fprintf(fp,"%s %d %d\n",desc,id,0);
 	fclose(fp);
 } 
 
@@ -57,9 +54,9 @@ void done(int taskId)
 		fclose(fr);
 	}
 
-	int count  = 0;
+	int count = 0;
 	Task *pTemp;
-	while(fscanf(fr,"%d %s %d ",&temp.id,temp.description,&temp.is_complete) == 3) {
+	while(fscanf(fr,"%s %d %d",temp.description,&temp.id,&temp.is_complete) == 3) {
 	
 
 		Task *pNewTemp = realloc(pTemp,(count + 1) * sizeof(Task));
@@ -68,9 +65,8 @@ void done(int taskId)
 		pTemp=pNewTemp;
 		
 	}
-	
+
 	fclose(fr);
-	printf("point2");
 	FILE* fw = fopen(FILE_NAME,"w");
 
 	if(!fw) { 
@@ -81,11 +77,12 @@ void done(int taskId)
 	
 	for(int i = 0; i < count; i++) {
 		
-		printf("%d %s %d\n",pTemp[i].id,pTemp[i].description,pTemp[i].is_complete);
+		fprintf(fw,"%s %d %d\n",pTemp[i].description,pTemp[i].id,pTemp[i].is_complete);
 	}
 	
 	fclose(fw);
-	printf("point3");
+	free(pTemp);
+	
 }
 
 void list() 
@@ -93,11 +90,11 @@ void list()
 
 	char line[256];	
 	char print_line[256];
+	Task temp;
 	FILE* read = fopen(FILE_NAME,"r");
 	if(read) {
-		while(fgets(line,sizeof(line),read)){
-			sscanf(line,"%s",print_line);
-			printf("%s\n",print_line);
+		while(fscanf(read,"%s %d %d",temp.description,&temp.id,&temp.is_complete) == 3) {
+		printf("%s|%d|%d\n",temp.description,temp.id,temp.is_complete);
 		}
 
 	}

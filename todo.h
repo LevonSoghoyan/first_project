@@ -7,7 +7,7 @@ typedef enum {
 typedef struct {
 	int id;
 	char description[256];
-	Done is_complete;
+	int is_complete;
 }Task;
 
 
@@ -17,4 +17,4 @@ void clear();
 
 void list();
 
-void done(int task_id);
+void done(int taskId);
