@@ -81,6 +81,24 @@ void done(int taskId)
 	
 }
 
+void complateList()
+{
+	Task temp;
+	FILE *fr = fopen(FILE_NAME,"r");
+
+	if(!fr) {
+		printf("F/O error");
+		fclose(fr);
+	}
+
+	while(fscanf(fr,"%s %d %d\n",temp.description,&temp.id,&temp.is_complete) == 3) {
+		if(temp.is_complete) {
+			printf("%s|%d\n",temp.description,temp.id);
+		}
+	}
+	fclose(fr);
+
+}
 void list() 
 {
 
