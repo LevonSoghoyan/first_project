@@ -17,6 +17,6 @@ void clear();
 
 void list();
 
-void complateList();
+void completeList();
 
 void done(int taskId);

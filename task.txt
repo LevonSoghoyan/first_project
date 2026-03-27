@@ -1,3 +1,0 @@
-0 0 task1 finish first project
-1 0 task2 learn git
-2 0 task3  NONE
