@@ -117,9 +117,9 @@ void list()
     }
 
     while (getline(&line, &size, read) != -1) {
-        // Ensure we successfully read all 3 fields
         if (sscanf(line, "%d %d %255[^\n]", &temp.id, &temp.is_complete, temp.description) == 3) {
-            printf("%d | %s | %s\n",
+                line[strcspn(line,"\n")] = 0;       
+                printf("%d | %s | %s\n",
                    temp.id,
                    temp.is_complete ? "DONE" : "IN PROGRESS",
                    temp.description);
