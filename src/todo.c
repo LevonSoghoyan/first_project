@@ -72,7 +72,6 @@ void done(int taskId)
     while (getline(&line, &size, fr) != -1) {
          line[strcspn(line, "\n")] = 0;       
          sscanf(line, "%d %d %255[^\n]", &temp.id, &temp.is_complete, temp.description);
-         printf("%-20s", temp.description);
          Task *pNewTemp = realloc(pTemp, (count + 1) * sizeof(Task));
          pNewTemp[count] = temp;
          count++;

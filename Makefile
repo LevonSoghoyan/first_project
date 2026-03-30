@@ -1,14 +1,16 @@
 CC = gcc
 CFLAGS = -Iinclude
-SRC = src/main.c src/todo.c test/test.c
-OBJ = todo.o main.o test.o
+SRC = src/main.c src/todo.c 
+OBJ = todo.o main.o 
+TEST_OBJ = test.o src/todo.o
+TEST_SRC = test/test.c src/todo.c
 all: todo run_test
 
 todo:$(OBJ)
-	$(CC) $(OBJ) -o _todo
+	$(CC) $(OBJ) -o todo
 
-run_test:$(OBJ)	
-	$(CC) $(OBJ) -o run_test
+run_test:$(TEST_OBJ)	
+	$(CC) $(TEST_OBJ) -o run_test
 	
 main.o: src/main.c
 	$(CC) $(CFLAGS) -c src/main.c
